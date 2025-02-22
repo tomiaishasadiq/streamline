@@ -1,80 +1,47 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { useNavigate} from "react-router-dom";
 import {Card} from "../components"
-import Img from "../assets/logo.png";
+import streamingServices from '../data/streamingServices';
+import networkMappings from './../data/networkMappings';
+
+const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
+const BASE_URL = "https://api.themoviedb.org/3";
 
 const Streamingpage = () => {
-  const streamingServices = [
-    { 
-      name: "Hulu", 
-      id: "hulu", 
-      imgSrc: Img, 
-      description: "Stream your favorite TV shows and movies"
-    },
-    { 
-      name: "Netflix", 
-      id: "netflix", 
-      imgSrc: Img,
-      description: "Watch original content and top shows"
-    },
-    { 
-      name: "Prime Video", 
-      id: "prime", 
-      imgSrc: Img, 
-      description: "Enjoy exclusive movies and TV shows"
-    },
-    { 
-      name: "Apple TV+", 
-      id: "appletv", 
-      imgSrc: Img, 
-      description: "Apple's original content library"
-    },
-    { 
-      name: "Sky TV+", 
-      id: "skytv", 
-      imgSrc: Img, 
-      description: ""
-    },
-    { 
-      name: "Disney+", 
-      id: "disney", 
-      imgSrc: Img,
-      description: "Stream Disney, Marvel, and Pixar"
-    },
-    { 
-      name: "HBO Max", 
-      id: "hbomax", 
-      imgSrc: Img,
-      description: "HBO's premium shows and movies"
-    },
-    { 
-      name: "Paramount", 
-      id: "paramount", 
-      imgSrc: Img,
-      description: "Stream CBS, Showtime, and more"
-    },
-    { 
-      name: "Starz", 
-      id: "starz", 
-      imgSrc: Img,
-      description: "Stream CBS, Showtime, and more"
-    }
-    ,  { 
-      name: "Peacock", 
-      id: "peacock", 
-      imgSrc: Img,
-      description: "Stream CBS, Showtime, and more"
-    }
-  ];
+  const [services, setServices] = useState(streamingServices);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchNetworkImage = async () => {
+      const updatedServices = await Promise.all(
+        services.map(async (service) => {
+          const networkId = networkMappings[service.id];
+          if (networkId) {
+            try {
+              const res = await fetch(`${BASE_URL}/network/${networkId}/images?api_key=${API_KEY}`);
+              const data = await res.json();
+              const imgSrc = `https://image.tmdb.org/t/p/original${data.logos[4]?.file_path || data.logos[3]?.file_path || data.logos[2]?.file_path ||data.logos[0]?.file_path || data.logos[1]?.file_path}`; 
+              return { ...service, imgSrc };
+            } catch (error) {
+              console.error(`Error fetching image for ${service.name}:`, error);
+              return { ...service, imgSrc: '' };
+            }
+          }
+          return service;
+        })
+      );
+      setServices(updatedServices);
+    };
+    fetchNetworkImage();
+  }, [services])
 
   return (
    
     <main>
       <section className="max-w-7xl mx-auto py-7">
-          <h2 className="text-center mb-5">Choose a Streaming Service</h2>
+          <h2 className="text-center text-2xl text-black-900 font-bold mb-5">Select a Streaming Service</h2>
           <div className="flex justify-start flex-wrap" >
-              {streamingServices.map((service) => (
+              {services.map((service) => (
               <Card
                 key={service.id}
                 service = {service}

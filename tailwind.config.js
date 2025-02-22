@@ -5,7 +5,14 @@ module.exports = {
   ],
   // darkmode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        'custom-blue': '#00C5C5',
+      },
+      fontFamily:{
+        sans: ['Proxima Nova', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
