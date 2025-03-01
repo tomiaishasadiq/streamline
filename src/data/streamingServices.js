@@ -78,6 +78,12 @@ const streamingServices = [
       description: ""
     },
     { 
+      name: "NBC", 
+      id: "nbc", 
+      imgSrc: "",
+      description: ""
+    },
+    { 
       name: "CBS", 
       id: "cbs", 
       imgSrc: "",

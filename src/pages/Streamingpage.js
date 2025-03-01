@@ -39,13 +39,14 @@ const Streamingpage = () => {
    
     <main>
       <section className="max-w-7xl mx-auto py-7">
-          <h2 className="text-center text-2xl text-black-900 font-bold mb-5">Select a Streaming Service</h2>
+          <h2 className="text-text text-center text-2xl text-black-900 font-bold mb-5">Select a Streaming Service</h2>
           <div className="flex justify-start flex-wrap" >
               {services.map((service) => (
               <Card
                 key={service.id}
                 service = {service}
-                onClick={() => navigate(`/service/${service.id}`)}/>               
+                onClick={() => navigate(`/service/${service.id}`)}
+             />               
               ))}
             </div>
       </section>

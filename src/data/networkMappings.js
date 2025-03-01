@@ -12,6 +12,7 @@ const networkMappings = {
     cw: 71,
     max: 6783,
     abc: 2,
+    nbc: 6,
     cbs: 16,
     crunchyroll: 1112,
     discovery: 64
