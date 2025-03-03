@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef  } from 'react';
 import { useNavigate } from "react-router-dom";
 import { fetchUpcomingShows } from "../tmdb";
 import networkMappings from './../data/networkMappings';
@@ -19,32 +19,58 @@ const Homepage = ({title}) => {
   const navigate = useNavigate();
   const pageTitle = UseTitle(title);
   const [featuredShows, setFeaturedShows] = useState([]);
-  const networks = ['Hulu', 'Netflix', 'Appletv', 'Primevideo', 'Disneyplus', 'Hbomax', 'Max', 'Paramount'];
+  // const networks = ['Hulu', 'Netflix', 'Appletv', 'Primevideo', 'Disneyplus', 'Hbomax', 'Max', 'Paramount'];
 
 
-  useEffect(() => {
-    const loadFeaturedShows = async () => {
-      try {
-        let allShows = [];
+  // useEffect(() => {
+  //   const loadFeaturedShows = async () => {
+  //     try {
+  //       let allShows = [];
         
        
-        for (const network of networks) {
-          const networkId = networkMappings[network];
-          if (networkId) {
-            const shows = await fetchUpcomingShows(networkId);
-            allShows = [...allShows, ...shows.slice(0, 3)];
-          }
-        }
+  //       for (const network of networks) {
+  //         const networkId = networkMappings[network];
+  //         if (networkId) {
+  //           const shows = await fetchUpcomingShows(networkId);
+  //           allShows = [...allShows, ...shows.slice(0, 3)];
+  //         }
+  //       }
         
-        setFeaturedShows(allShows);
-      } catch (error) {
-        console.error("Failed to fetch shows:", error);
-      }
-    };
+  //       setFeaturedShows(allShows);
+  //     } catch (error) {
+  //       console.error("Failed to fetch shows:", error);
+  //     }
+  //   };
 
-    loadFeaturedShows();
-  }, []);
+  //   loadFeaturedShows();
+  // }, []);
 
+   // Store the networks in a ref so that we don't trigger re-renders on change
+   const networksRef = useRef(['Hulu', 'Netflix', 'Appletv', 'Primevideo', 'Disneyplus', 'Hbomax', 'Max', 'Paramount']);
+
+   useEffect(() => {
+     const loadFeaturedShows = async () => {
+       try {
+         let allShows = [];
+         
+         // Use the current value of networks from the ref
+         for (const network of networksRef.current) {
+           const networkId = networkMappings[network];
+           if (networkId) {
+             const shows = await fetchUpcomingShows(networkId);
+             allShows = [...allShows, ...shows.slice(0, 3)];
+           }
+         }
+         
+         setFeaturedShows(allShows);
+       } catch (error) {
+         console.error("Failed to fetch shows:", error);
+       }
+     };
+ 
+     loadFeaturedShows();
+   }, []); // No dependencies here as the `networksRef` is not part of the state
+ 
 
 
   const chunkArray = (array, size) => {
