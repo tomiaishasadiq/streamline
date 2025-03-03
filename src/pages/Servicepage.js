@@ -11,6 +11,7 @@ const Servicepage = ({title}) => {
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
+    //eslint-disable-next-line
   const pageTitle = UseTitle(title);
 
   const handleFilterChange = (event) => {

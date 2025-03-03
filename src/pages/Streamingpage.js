@@ -11,6 +11,7 @@ const BASE_URL = "https://api.themoviedb.org/3";
 const Streamingpage = ({title}) => {
   const [services, setServices] = useState(streamingServices);
   const navigate = useNavigate();
+    //eslint-disable-next-line
     const pageTitle = UseTitle(title);
 
   useEffect(() => {

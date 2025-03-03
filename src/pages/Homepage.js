@@ -17,6 +17,7 @@ import 'swiper/css/autoplay';
 
 const Homepage = ({title}) => {
   const navigate = useNavigate();
+  //eslint-disable-next-line
   const pageTitle = UseTitle(title);
   const [featuredShows, setFeaturedShows] = useState([]);
   // const networks = ['Hulu', 'Netflix', 'Appletv', 'Primevideo', 'Disneyplus', 'Hbomax', 'Max', 'Paramount'];
