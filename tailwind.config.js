@@ -11,11 +11,13 @@ module.exports = {
         'primary': 'var(--primary)',
         'secondary': 'var(--secondary)',
         'accent': 'var(--accent)',
+        'card': 'var(--card)'
        },                     
-      // fontFamily:{
-      //   sans: ['Proxima Nova', 'sans-serif'],
-      // }
-    },
+       fontFamily: {
+        sans: ['Proxima Nova', 'sans-serif'],
+        body: ['Roboto Flex', 'sans-serif'],
+      },
+    }
   },
   plugins: [],
 }

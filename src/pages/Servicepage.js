@@ -21,21 +21,6 @@ const Servicepage = () => {
       const networkId = networkMappings[serviceId];
       const allShows = await fetchUpcomingShows(networkId);
 
-     
-      // const filteredShows = allShows.filter((show) => {
-      //   if (filter === 'new') return show.status === "In Production";
-      //   if (filter === 'returning') return show.status === "Returning Series";
-      //   return true;
-      // });
-      // const filteredShows = allShows.filter((show) => {
-      //   if (filter === 'new') {
-      //     return show.numberOfSeasons === 1 && !show.lastAirDate;
-      //   }
-      //   if (filter === 'returning') {
-      //     return show.inProduction && show.nextEpisode !== null;
-      //   }
-      //   return true; // 'all' filter
-      // });
 
       const filteredShows = allShows.filter((show) => {
         if (filter === 'new') {
@@ -44,7 +29,7 @@ const Servicepage = () => {
         if (filter === 'returning') {
           return show.inProduction && show.nextEpisode !== null && show.lastAirDate !== null;
         }
-        return true; // 'all' filter
+        return true; 
       });
       
       
@@ -58,7 +43,7 @@ const Servicepage = () => {
 
   const handleShowClick = (imdbUrl) => {
     if (imdbUrl) {
-      window.open(imdbUrl, '_blank'); // Opens the IMDb page in a new tab
+      window.open(imdbUrl, '_blank');
     } else {
       alert("IMDb page not available for this show.");
     }
@@ -66,18 +51,19 @@ const Servicepage = () => {
 
   return (
     <main className="max-w-7xl mx-auto py-7">
-      <h2 className="text-center text-2xl text-black-900 font-bold mb-5">
+      <h2 className=" text-text text-center text-2xl text-black-900 font-bold mb-5">
         Upcoming TV Shows on {serviceId}
       </h2>
 
       <FormControl fullWidth sx={{ marginBottom: 8 }}>
-        <InputLabel id="filter-select-label">Filter</InputLabel>
+        <InputLabel id="filter-select-label" className="dark:text-white">Filter</InputLabel>
         <Select
           labelId="filter-select-label"
           id="filter-select"
           value={filter}
           label="Filter"
           onChange={handleFilterChange}
+          className="dark:text-black dark:bg-white"
         >
           <MenuItem value="all">All TV Shows</MenuItem>
           <MenuItem value="new">New TV Shows</MenuItem>
@@ -86,20 +72,18 @@ const Servicepage = () => {
       </FormControl>
 
       {loading ? (
-        <p className="text-center">
+        <p className="text-text text-center">
           <img src={Img} alt="Loading" className="mx-auto" />
           Loading...
         </p>
       ) : shows.length === 0 ? (
-        <p className="text-center">No Upcoming TV shows.</p>
+        <p className="text-text text-center">No Upcoming TV shows.</p>
       ) : (
         <div className="space-y-5">
           {shows.map((show) => (
             <div
               key={show.id}
-              className="flex items-center max-w-7xl mx-auto h-80 bg-white rounded-lg shadow-md p-4"
-              onClick={() => handleShowClick(show.imdbUrl)} // Handle click for IMDb URL
-              style={{ cursor: 'pointer' }} // Add pointer cursor to indicate it's clickable
+              className="flex items-center max-w-7xl mx-auto min-h-full bg-card rounded-lg shadow-md p-4"
             >
               <div className="w-40 h-56 rounded-lg overflow-hidden bg-gray-200 flex items-center justify-center">
                 {show.poster_path ? (
@@ -109,19 +93,27 @@ const Servicepage = () => {
                     alt={show.name}
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gray-500 text-white text-sm font-bold">
+                  <div className="w-full h-full flex items-center justify-center bg-gray-500 text-text text-sm font-bold">
                     {show.name}
                   </div>
                 )}
               </div>
               <div className="flex-1 flex-col justify-between ml-6">
-                <h3 className="text-xl font-bold">{show.name}</h3>
-                <p className="text-lg text-black-500 font-bold">{show.overview}</p>
+                <h3 className="text-accent dark:text-text text-2xl font-bold">{show.name}</h3>
+                <p className="text-text text-lg text-black-500 font-bold">{show.overview}</p>
                 {show.nextEpisode && (
-                  <p className="text-lg mt-6 text-gray-500 font-bold">
+                  <p className="text-text text-lg mt-6">
                     Next Episode:<br /> {show.nextEpisode.name} - Airs on {show.nextEpisode.air_date}
                   </p>
                 )}
+                <div className="flex justify-end mt-4">
+                  <button
+                    onClick={() => handleShowClick(show.imdbUrl)}
+                    className="px-6 py-2 bg-accent text-white font-bold rounded-lg hover:bg-secondary cursor-pointer transition"
+                  >
+                    View Details
+                  </button>
+                </div>
               </div>
             </div>
           ))}

@@ -4,11 +4,11 @@ import { fetchUpcomingShows } from "../tmdb";
 import networkMappings from './../data/networkMappings';
 import '../index.css'
 
-// Swiper Imports
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay} from 'swiper/modules';
 
-// Swiper styles
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -24,7 +24,7 @@ const Homepage = () => {
       try {
         let allShows = [];
         
-        // Fetch 3 shows per network
+       
         for (const network of networks) {
           const networkId = networkMappings[network];
           if (networkId) {
@@ -42,7 +42,7 @@ const Homepage = () => {
     loadFeaturedShows();
   }, []);
 
-  // Chunk shows into groups
+
   const chunkArray = (array, size) => {
     const filteredArray = array.filter(item => item.poster_path);
     let chunks = [];
@@ -55,61 +55,73 @@ const Homepage = () => {
   const showChunks = chunkArray(featuredShows, 3);
 
   return (
-    <main>
-      <div className="bg-primary p-4 rounded-lg">
-        {showChunks.length > 0 ? (
-          <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            navigation
-            pagination={{ clickable: true }}
-            spaceBetween={30}
-            slidesPerView={1}
-            autoplay={{ 
-              delay: 3000, 
-              disableOnInteraction: false 
-            }}
-            
+    <main className="p-8">
+       <div className="flex flex-col lg:flex-row items-center justify-between gap-12 mt-10  2xl:mt-64 2xl:gap-32"> 
+  
+        <section className="w-1/2 flex flex-col items-start">
+          <h1 className="text-text text-3xl sm:text-5xl md:text-6xl font-bold mt-2 sm:mt-4 mb-4 whitespace-nowrap">Welcome to Streamline</h1>
+          <p className="font-body text-text text-lg sm:text-xl md:text-xl mb-10 text-justify ">
+          Stay updated on new and returning TV shows across streaming platforms and networks, all in one place.
+          </p>
+          <div className="w-full flex justify-center">
+          <button
+            className="bg-accent text-white text-2xl sm:text-3xl md:text5xl  font-bold mt-2 md:mt-8 py-4 px-8 rounded-lg shadow-lg hover:bg-secondary hover:shadow-2xl transition-all"
+            onClick={() => navigate("/streaming-services")}
           >
-            {showChunks.map((chunk, index) => (
-              <SwiperSlide key={index}>
-                <div className="flex justify-center gap-6">
-                  {chunk.map((show) => (
-                    <div key={show.id} className="w-60">
-                      <img
-                        className="w-full h-90 object-cover rounded-lg shadow-lg"
-                        src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
-                        alt={show.name}
-                      />
-                      <h3 className="text-text text-xl font-bold mt-3 text-center">
-                        {show.name}
-                      </h3>
-                    </div>
-                  ))}
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        ) : (
-          <div className="text-center p-6">
-            <h2 className="text-text text-2xl font-bold">No upcoming shows found.</h2>
-          </div>
-        )}
+            Get Started
+          </button>
+        </div>
+        </section>
+  
+  
+        <div className="w-full sm:w-3/4 lg:w-1/2  bg-primary p-4 rounded-lg">
+          {showChunks.length > 0 ? (
+            <Swiper
+            style={{
+              "--swiper-pagination-color": "#553c9a", 
+              "--swiper-pagination-bottom": "-4px",
+              "--swiper-navigation-color": "#553c9a", 
+            }}
+              modules={[Navigation, Pagination, Autoplay]}
+              navigation
+              pagination={{ clickable: true }}
+              spaceBetween={30}
+              slidesPerView={1}
+              autoplay={{ 
+                delay: 3000, 
+                disableOnInteraction: false 
+              }}
+            >
+              {showChunks.map((chunk, index) => (
+                <SwiperSlide key={index}>
+                  <div className="flex justify-center gap-6">
+                    {chunk.map((show) => (
+                      <div key={show.id} className="w-60">
+                        <img
+                          className="w-full h-90 object-cover rounded-lg shadow-lg"
+                          src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
+                          alt={show.name}
+                        />
+                        <h3 className="text-text text-xl font-bold mt-3 text-center">
+                          {show.name}
+                        </h3>
+                      </div>
+                    ))}
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          ) : (
+            <div className="text-center p-6">
+              <h2 className="text-text text-2xl font-bold">No upcoming shows found.</h2>
+            </div>
+          )}
+        </div>
       </div>
-
-      <section className="flex flex-col items-center justify-center mt-28">
-        <h1 className="text-text text-5xl font-bold mb-4">Welcome to Streamline</h1>
-        <p className=" text-text text-xl mb-6">
-          Track upcoming TV shows across streaming services and tv networks in one place.
-        </p>
-        <button
-          className="bg-accent text-white text-4xl font-bold py-4 px-8 rounded-lg shadow-lg hover:bg-secondary transition-colors"
-          onClick={() => navigate("/streaming-services")}
-        >
-          Get Started
-        </button>
-      </section>
     </main>
-  );
+  ); 
+  
+  
 };
 
 export default Homepage;

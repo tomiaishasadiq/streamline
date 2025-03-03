@@ -3,25 +3,25 @@ const streamingServices = [
       name: "Hulu", 
       id: "hulu", 
       imgSrc: "", 
-      description: "Stream your favorite TV shows and movies"
+      description: ""
     },
     { 
       name: "Netflix", 
       id: "netflix", 
       imgSrc: "",
-      description: "Watch original content and top shows"
+      description: ""
     },
     { 
       name: "Prime Video", 
       id: "prime", 
       imgSrc: "", 
-      description: "Enjoy exclusive movies and TV shows"
+      description: ""
     },
     { 
       name: "Apple TV+", 
       id: "appletv", 
       imgSrc: "", 
-      description: "Apple's original content library"
+      description: ""
     },
     { 
       name: "Sky TV+", 
@@ -33,31 +33,31 @@ const streamingServices = [
       name: "Disney+", 
       id: "disney", 
       imgSrc: "",
-      description: "Stream Disney, Marvel, and Pixar"
+      description: ""
     },
     { 
       name: "HBO Max", 
       id: "hbomax", 
       imgSrc: "",
-      description: "HBO's premium shows and movies"
+      description: ""
     },
     { 
       name: "Paramount", 
       id: "paramount", 
       imgSrc: "",
-      description: "Stream CBS, Showtime, and more"
+      description: ""
     },
     { 
       name: "Starz", 
       id: "starz", 
       imgSrc: "",
-      description: "Stream CBS, Showtime, and more"
+      description: ""
     },  
     { 
       name: "Peacock", 
       id: "peacock", 
       imgSrc: "",
-      description: "Stream CBS, Showtime, and more"
+      description: ""
     }, 
     { 
       name: "Max", 
@@ -100,10 +100,19 @@ const streamingServices = [
       id: "discovery", 
       imgSrc: "",
       description: ""
+    },
+    { 
+      name: "JTBC", 
+      id: "jtbc", 
+      imgSrc: "",
+      description: ""
+    },
+    { 
+      name: "TVN", 
+      id: "tvn", 
+      imgSrc: "",
+      description: ""
     }
-
-    
-
 ];
 
 export default streamingServices

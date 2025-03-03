@@ -20,7 +20,7 @@ const Streamingpage = () => {
             try {
               const res = await fetch(`${BASE_URL}/network/${networkId}/images?api_key=${API_KEY}`);
               const data = await res.json();
-              const imgSrc = `https://image.tmdb.org/t/p/original${data.logos[4]?.file_path || data.logos[3]?.file_path || data.logos[2]?.file_path ||data.logos[0]?.file_path || data.logos[1]?.file_path}`; 
+              const imgSrc = `https://image.tmdb.org/t/p/original${data.logos[6]?.file_path || data.logos[3]?.file_path || data.logos[2]?.file_path ||data.logos[0]?.file_path || data.logos[1]?.file_path}`; 
               return { ...service, imgSrc };
             } catch (error) {
               console.error(`Error fetching image for ${service.name}:`, error);
@@ -38,9 +38,9 @@ const Streamingpage = () => {
   return (
    
     <main>
-      <section className="max-w-7xl mx-auto py-7">
+      <section className="max-w-7xl mx-auto py-7 ">
           <h2 className="text-text text-center text-2xl text-black-900 font-bold mb-5">Select a Streaming Service</h2>
-          <div className="flex justify-start flex-wrap" >
+          <div className="flex justify-center  flex-wrap" >
               {services.map((service) => (
               <Card
                 key={service.id}

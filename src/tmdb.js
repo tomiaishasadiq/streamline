@@ -23,7 +23,7 @@ export const fetchUpcomingShows = async (networkId) => {
           );
           const showDetails = await showDetailsResponse.json();
 
-          // Fetch external IDs (Wikipedia link included)
+          
           const externalIdsResponse = await fetch(
             `${BASE_URL}/tv/${show.id}/external_ids?api_key=${API_KEY}`
           );
