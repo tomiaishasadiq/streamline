@@ -7,10 +7,9 @@ const AllRoutes = () => {
   return (
     <main>
     <Routes>
-        <Route path= "/" element = {<Homepage/>}/>
-        <Route path="/streaming-services" element={<Streamingpage />} />
-        <Route path="/service/:serviceId" element={<Servicepage />} />
-      
+        <Route path= "/" element = {<Homepage title="Home" />}/>
+        <Route path="/streaming-services" element={<Streamingpage title="Streaming services" />} />
+        <Route path="/service/:serviceId" element={<Servicepage title="Tvshows" />} />
     </Routes>
     </main>
   )

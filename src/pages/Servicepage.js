@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import {UseTitle} from "../UseTitle"
 import networkMappings from './../data/networkMappings';
 import { fetchUpcomingShows } from "../tmdb";
 import Img from "../assets/logo.png";
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
-const Servicepage = () => {
+const Servicepage = ({title}) => {
   const { serviceId } = useParams();
   const [shows, setShows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
+  const pageTitle = UseTitle(title);
 
   const handleFilterChange = (event) => {
     setFilter(event.target.value);
@@ -40,6 +42,9 @@ const Servicepage = () => {
 
     loadShows();
   }, [serviceId, filter]);
+
+
+
 
   const handleShowClick = (imdbUrl) => {
     if (imdbUrl) {

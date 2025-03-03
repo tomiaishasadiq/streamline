@@ -1,73 +1,73 @@
 const streamingServices = [
     { 
       name: "Hulu", 
-      id: "hulu", 
+      id: "Hulu", 
       imgSrc: "", 
       description: ""
     },
     { 
       name: "Netflix", 
-      id: "netflix", 
+      id: "Netflix", 
       imgSrc: "",
       description: ""
     },
     { 
       name: "Prime Video", 
-      id: "prime", 
+      id: "Primevideo", 
       imgSrc: "", 
       description: ""
     },
     { 
       name: "Apple TV+", 
-      id: "appletv", 
+      id: "Appletv", 
       imgSrc: "", 
       description: ""
     },
     { 
       name: "Sky TV+", 
-      id: "skytv", 
+      id: "Skytv", 
       imgSrc: "", 
       description: ""
     },
     { 
       name: "Disney+", 
-      id: "disney", 
+      id: "Disneyplus", 
       imgSrc: "",
       description: ""
     },
     { 
       name: "HBO Max", 
-      id: "hbomax", 
+      id: "Hbomax", 
       imgSrc: "",
       description: ""
     },
     { 
       name: "Paramount", 
-      id: "paramount", 
+      id: "Paramount", 
       imgSrc: "",
       description: ""
     },
     { 
       name: "Starz", 
-      id: "starz", 
+      id: "Starz", 
       imgSrc: "",
       description: ""
     },  
     { 
       name: "Peacock", 
-      id: "peacock", 
+      id: "Peacock", 
       imgSrc: "",
       description: ""
     }, 
     { 
       name: "Max", 
-      id: "max", 
+      id: "Max", 
       imgSrc: "",
       description: ""
     },
     { 
         name: "CW", 
-        id: "cw", 
+        id: "Cw", 
         imgSrc: "",
         description: ""
     },

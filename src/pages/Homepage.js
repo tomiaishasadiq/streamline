@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { fetchUpcomingShows } from "../tmdb";
 import networkMappings from './../data/networkMappings';
+import {UseTitle} from "../UseTitle";
 import '../index.css'
 
 
@@ -14,10 +15,12 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 
-const Homepage = () => {
+const Homepage = ({title}) => {
   const navigate = useNavigate();
+  const pageTitle = UseTitle(title);
   const [featuredShows, setFeaturedShows] = useState([]);
-  const networks = ['hulu', 'netflix', 'apple', 'prime', 'disney', 'hbomax', 'max', 'paramount'];
+  const networks = ['Hulu', 'Netflix', 'Appletv', 'Primevideo', 'Disneyplus', 'Hbomax', 'Max', 'Paramount'];
+
 
   useEffect(() => {
     const loadFeaturedShows = async () => {
@@ -41,6 +44,7 @@ const Homepage = () => {
 
     loadFeaturedShows();
   }, []);
+
 
 
   const chunkArray = (array, size) => {

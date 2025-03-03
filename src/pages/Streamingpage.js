@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useNavigate} from "react-router-dom";
+import {UseTitle} from "../UseTitle";
 import {Card} from "../components"
 import streamingServices from '../data/streamingServices';
 import networkMappings from './../data/networkMappings';
@@ -7,9 +8,10 @@ import networkMappings from './../data/networkMappings';
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
 
-const Streamingpage = () => {
+const Streamingpage = ({title}) => {
   const [services, setServices] = useState(streamingServices);
   const navigate = useNavigate();
+    const pageTitle = UseTitle(title);
 
   useEffect(() => {
     const fetchNetworkImage = async () => {
@@ -34,6 +36,8 @@ const Streamingpage = () => {
     };
     fetchNetworkImage();
   }, [services])
+
+
 
   return (
    
