@@ -112,6 +112,12 @@ const streamingServices = [
       id: "tvn", 
       imgSrc: "",
       description: ""
+    },
+    { 
+      name: "SBS", 
+      id: "sbs", 
+      imgSrc: "",
+      description: ""
     }
 ];
 

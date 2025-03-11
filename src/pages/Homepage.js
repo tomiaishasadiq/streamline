@@ -20,33 +20,7 @@ const Homepage = ({title}) => {
   //eslint-disable-next-line
   const pageTitle = UseTitle(title);
   const [featuredShows, setFeaturedShows] = useState([]);
-  // const networks = ['Hulu', 'Netflix', 'Appletv', 'Primevideo', 'Disneyplus', 'Hbomax', 'Max', 'Paramount'];
 
-
-  // useEffect(() => {
-  //   const loadFeaturedShows = async () => {
-  //     try {
-  //       let allShows = [];
-        
-       
-  //       for (const network of networks) {
-  //         const networkId = networkMappings[network];
-  //         if (networkId) {
-  //           const shows = await fetchUpcomingShows(networkId);
-  //           allShows = [...allShows, ...shows.slice(0, 3)];
-  //         }
-  //       }
-        
-  //       setFeaturedShows(allShows);
-  //     } catch (error) {
-  //       console.error("Failed to fetch shows:", error);
-  //     }
-  //   };
-
-  //   loadFeaturedShows();
-  // }, []);
-
-   // Store the networks in a ref so that we don't trigger re-renders on change
    const networksRef = useRef(['Hulu', 'Netflix', 'Appletv', 'Primevideo', 'Disneyplus', 'Hbomax', 'Max', 'Paramount']);
 
    useEffect(() => {
@@ -54,7 +28,6 @@ const Homepage = ({title}) => {
        try {
          let allShows = [];
          
-         // Use the current value of networks from the ref
          for (const network of networksRef.current) {
            const networkId = networkMappings[network];
            if (networkId) {
@@ -70,9 +43,8 @@ const Homepage = ({title}) => {
      };
  
      loadFeaturedShows();
-   }, []); // No dependencies here as the `networksRef` is not part of the state
+   }, []); 
  
-
 
   const chunkArray = (array, size) => {
     const filteredArray = array.filter(item => item.poster_path);
@@ -90,8 +62,8 @@ const Homepage = ({title}) => {
        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 mt-10  2xl:mt-64 2xl:gap-32"> 
   
         <section className="w-1/2 flex flex-col items-start">
-          <h1 className="text-text text-3xl sm:text-5xl md:text-6xl font-bold mt-2 sm:mt-4 mb-4 whitespace-nowrap">Welcome to Streamline</h1>
-          <p className="font-body text-text text-lg sm:text-xl md:text-xl mb-10 text-justify ">
+          <h1 className="text-text text-3xl sm:text-5xl md:text-6xl font-bold mt-2 sm:mt-4 mb-4 break-words text-center ">Welcome to Streamline</h1>
+          <p className="font-body text-text text-lg sm:text-xl md:text-xl mb-10 text-center 2xl:text-justify ">
           Stay updated on new and returning TV shows across streaming platforms and networks, all in one place.
           </p>
           <div className="w-full flex justify-center">
@@ -122,6 +94,7 @@ const Homepage = ({title}) => {
                 delay: 3000, 
                 disableOnInteraction: false 
               }}
+          
             >
               {showChunks.map((chunk, index) => (
                 <SwiperSlide key={index}>

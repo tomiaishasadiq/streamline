@@ -23,7 +23,7 @@ const Streamingpage = ({title}) => {
             try {
               const res = await fetch(`${BASE_URL}/network/${networkId}/images?api_key=${API_KEY}`);
               const data = await res.json();
-              const imgSrc = `https://image.tmdb.org/t/p/original${data.logos[6]?.file_path || data.logos[3]?.file_path || data.logos[2]?.file_path ||data.logos[0]?.file_path || data.logos[1]?.file_path}`; 
+              const imgSrc = `https://image.tmdb.org/t/p/original${data.logos[4]?.file_path || data.logos[3]?.file_path || data.logos[2]?.file_path ||data.logos[0]?.file_path || data.logos[1]?.file_path}`; 
               return { ...service, imgSrc };
             } catch (error) {
               console.error(`Error fetching image for ${service.name}:`, error);

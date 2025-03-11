@@ -17,7 +17,8 @@ const networkMappings = {
     crunchyroll: 1112,
     discovery: 64,
     jtbc:885,
-    tvn:866
+    tvn:866,
+    sbs:156
   
 };
 
